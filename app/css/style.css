@@ -1,0 +1,73 @@
+body {
+  background-color: #f0f3f6;
+  /*background: url("../img/metal.jpg");*/
+  background: url("../img/ravenna.png");
+  font-family: arial, helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  background-color: white;
+  box-shadow: 0 0 5px 5px #ddd;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: 0.5em 2em 4em;
+  max-width: 1400px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+.small {
+  font-size: 80%;
+}
+
+#userInput input,
+#userInput select,
+button {
+  font-size: 16px;
+  margin-right: 2em;
+  padding: 0.2em 0.5em;
+}
+
+.tableBox {
+  float: left;
+  margin: 0 2em 2em 0;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  /*background-color: #f0f0f3;*/
+}
+
+td {
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+  padding: 0.5em 1em;
+}
+
+.error {
+  background-color: #ffffcc;
+  border: 1px solid #ccc;
+  float: left;
+  padding: 1em;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+  clear: both;
+  font-size: 75%;
+  margin-top: 2em;
+  opacity: 0.6;
+  padding-top: 1em;
+}
