@@ -38,7 +38,7 @@ const meteoTerms = function(value) {
     pmedian: "Median precipitation intensity",
     pmean: "Mean precipitation intensity",
     spp: "Precipitation in frozen form",
-    pcat: "Precipitation category",
+    pcat: "Precipitation",
     tstm: "Thunder probability"
   };
   if (terms[value]) {

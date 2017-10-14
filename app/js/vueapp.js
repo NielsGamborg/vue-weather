@@ -2,9 +2,13 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import lodash from "lodash";
+import VueLodash from "vue-lodash";
 
 Vue.use(VueAxios, axios);
+Vue.use(VueLodash, lodash);
 
+/* FIlters, components */
 import { timeFilter, meteoTerms, units, wind, precipitationDescription } from "./vuefilters.js";
 import { Title, Forecast } from "./vuecomponents.js";
 
@@ -35,7 +39,6 @@ const VueApp = new Vue({
       this.$http.get(this.url).then(
         response => {
           console.log("response", response.data);
-          console.log("response.timeSeries.parameters", response.data.timeSeries[0].parameters[0]);
           this.forecastData = response.data;
         },
         response => {
