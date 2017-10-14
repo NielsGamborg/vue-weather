@@ -17,11 +17,16 @@ body {
 }
 
 h1 {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 h3 {
   font-size: 14px;
+}
+
+input[type="checkbox"] {
+  margin: 0 1em 0 0.2em;
+  vertical-align: middle;
 }
 
 .small {
