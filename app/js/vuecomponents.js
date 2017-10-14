@@ -10,6 +10,7 @@ const Forecast = {
   props: ["forecastData"],
   data: function() {
     return {
+      forecastLength: 3,
       showPrecipitation: false,
       showSnow: false,
       showThunder: false,
@@ -20,19 +21,32 @@ const Forecast = {
   template: `
         <div v-if="forecastData">
           <p>Forecast updated: {{ forecastData.approvedTime | toLocaleTime }}</p>
+
+          <div id="selectLength">
+          Length of forecast: 
+          <select v-model="forecastLength">
+            <option value="1">1 hours</option>
+            <option value="3">3 hours</option>
+            <option value="6">6 hours</option>
+            <option value="12">12 hours</option>
+            <option value="24">24 hours</option>
+          </select>
+        </div>
+
           <p>
           Precipitation details<input type="checkbox" v-model="showPrecipitation"> 
           Snow<input type="checkbox" v-model="showSnow"> 
           Thunder<input type="checkbox" v-model="showThunder">
           Cloud details<input type="checkbox" v-model="showClouds">
           Visibility<input type="checkbox" v-model="showVisibility">
+
+          
           </p>
-          <div v-for="hour in forecastData.timeSeries" class="tableBox">
+          <div v-for="(hour, index) in forecastData.timeSeries" v-if="index < forecastLength" class="tableBox">  
             <h3>{{hour.validTime | toLocaleTime }}</h3>
             <table>
               <tbody>
                 <tr v-for="item in hour.parameters">
-                  <!--<td v-for="(value, key, index) in item" v-if="chosenParameter()">{{index}}{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>-->
                   <td v-if="chosenParameter(item.name)">{{item.name | translateMeteoTerm }}</td>
                   <td v-if="chosenParameter(item.name) && item.name !== 'wd'">{{item.values[0] }} {{item.unit | translateUnit }}</td>
                   <td v-if="chosenParameter(item.name) && item.name === 'wd'">{{item.values[0] | translateWind }} {{item.unit | translateUnit }}</td>

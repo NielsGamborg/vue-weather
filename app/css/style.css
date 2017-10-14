@@ -41,6 +41,10 @@ button {
   padding: 0.2em 0.5em;
 }
 
+#selectLength {
+  float: right;
+}
+
 .tableBox {
   float: left;
   margin: 0 2em 2em 0;

@@ -123,4 +123,4 @@ const wind = function(value) {
   return newValue;
 };
 
-export { timeFilter, meteoTerms, units, wind };
+export { sortData, timeFilter, meteoTerms, units, wind };
