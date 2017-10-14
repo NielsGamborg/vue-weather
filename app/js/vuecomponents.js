@@ -2,8 +2,10 @@
 const Title = {
   props: ["title"],
   template: `
+  <div id="header">
         <h1>{{ title }}</h1>
-    `
+  </div>
+        `
 };
 
 const Forecast = {
@@ -19,7 +21,7 @@ const Forecast = {
     };
   },
   template: `
-        <div v-if="forecastData">
+        <div id="databox" v-if="forecastData">
           <p>Forecast updated: {{ forecastData.approvedTime | toLocaleTime }}</p>
 
           <div id="selectLength">
@@ -57,8 +59,8 @@ const Forecast = {
             </table>
           </div>
           <div class="footer">
-          <a href="http://opendata.smhi.se/apidocs/metfcst/index.html">http://opendata.smhi.se/apidocs/metfcst/index.html</a><br>
-          <a href="http://opendata.smhi.se/apidocs/metfcst/parameters.html">http://opendata.smhi.se/apidocs/metfcst/parameters.html</a><br>
+          <p>Meteorological Forecasts from <a href="http://opendata.smhi.se/apidocs/metfcst/index.html">SMHI Open Data</a>.</p>
+          <p><a href="http://opendata.smhi.se/apidocs/metfcst/parameters.html">http://opendata.smhi.se/apidocs/metfcst/parameters.html</a></p>
         
           </div>
           

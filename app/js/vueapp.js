@@ -40,11 +40,20 @@ const VueApp = new Vue({
         response => {
           console.log("response", response.data);
           this.forecastData = response.data;
+          var rawForecast = response.data;
+          this.rebuildforecastData(rawForecast);
         },
         response => {
           console.log("Error!", response);
         }
       );
+    },
+    rebuildforecastData: function(rawData) {
+      //var new_forecastData = this._.random(20);
+      var new_forecastData;
+      new_forecastData = rawData;
+      console.log("new_forecastData", new_forecastData);
+      return new_forecastData;
     }
   },
   created: function() {
