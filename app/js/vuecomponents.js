@@ -15,28 +15,16 @@ const Forecast = {
             <h3>{{hour.validTime | toLocaleTime }}</h3>
             <table>
               <tbody>
-                <!--
                 <tr v-for="item in hour.parameters">
-                  <td v-for="(value, key) in item" v-if="key !=='levelType' && key !=='level' ">{{ value }}</td>
-                </tr>-->
-                <tr v-for="item in hour.parameters">
-                  <!--<td v-if="key=='r'">{{ value }}</td>-->
-                  <!--<td v-for="(value, key) in item" v-if="value=='t'">{{ value | translateMeteoTerm }}: {{item.values[0]}} {{item.unit}}</td>
-                  <td v-for="(value, key) in item" v-if="value=='r'">{{ value | translateMeteoTerm }}: {{item.values[0]}} {{item.unit | translateUnit}}</td>
-                  <td v-for="(value, key) in item" v-if="value=='gust'">{{ value | translateMeteoTerm }}: {{item.values[0]}} {{item.unit}}</td>
-                  <td v-for="(value, key) in item" v-if="value=='ws'">{{ value | translateMeteoTerm }}: {{item.values[0]}} {{item.unit}}</td>
-                  <td v-for="(value, key) in item" v-if="value=='wd'">{{ value | translateMeteoTerm }}: {{item.values[0]}} {{item.unit | translateUnit }}</td>
-                  <td v-for="(value, key) in item" v-if="value=='tcc_mean'">{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>
-                  <td v-for="(value, key) in item" v-if="value=='lcc_mean'">{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>
-                  <td v-for="(value, key) in item" v-if="value=='mcc_mean'">{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>
-                  <td v-for="(value, key) in item" v-if="value=='hcc_mean'">{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>
-                  -->
-                  <td v-for="(value, key) in item" v-if="chosenParameter()">{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>
+                  <!--<td v-for="(value, key, index) in item" v-if="chosenParameter()">{{index}}{{ value | translateMeteoTerm }}: {{item.values[0]}}{{item.unit | translateUnit }}</td>-->
+                  <td v-if="chosenParameter()">{{item.name | translateMeteoTerm }}</td>
+                  <td v-if="chosenParameter()">{{item.values[0] | translateWind }} {{item.unit | translateUnit }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="footer">
+          <a href="http://opendata.smhi.se/apidocs/metfcst/parameters.html">http://opendata.smhi.se/apidocs/metfcst/parameters.html</a>
             <p>{{ forecastData }}</p>
           </div>
           

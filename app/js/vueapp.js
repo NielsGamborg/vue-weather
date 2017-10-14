@@ -5,12 +5,13 @@ import VueAxios from "vue-axios";
 
 Vue.use(VueAxios, axios);
 
-import { timeFilter, meteoTerms, units } from "./vuefilters.js";
+import { timeFilter, meteoTerms, units, wind } from "./vuefilters.js";
 import { Title, Forecast } from "./vuecomponents.js";
 
 Vue.filter("toLocaleTime", timeFilter);
 Vue.filter("translateMeteoTerm", meteoTerms);
 Vue.filter("translateUnit", units);
+Vue.filter("translateWind", wind);
 Vue.component("header-box", Title);
 Vue.component("forecast-box", Forecast);
 

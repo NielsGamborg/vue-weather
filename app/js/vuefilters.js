@@ -24,13 +24,22 @@ const meteoTerms = function(value) {
   var terms = {
     r: "Humidity",
     t: "Temperature",
+    msl: "Air pressure",
+    vis: "Visibility",
     wd: "Wind direction",
     ws: "Wind speed",
     gust: "Wind gust",
     tcc_mean: "Total cloud cover",
     lcc_mean: "Low level cloud cover",
     mcc_mean: "Medium level cloud cover",
-    hcc_mean: "High level cloud cover"
+    hcc_mean: "High level cloud cover",
+    pmin: "Minimum precipitation intensity",
+    pmax: "Maximum precipitation intensity",
+    pmedian: "Median precipitation intensity",
+    pmean: "Mean precipitation intensity",
+    spp: "Percent of precipitation in frozen form",
+    pcat: "Precipitation category",
+    tstm: "Thunder probability"
   };
   if (terms[value]) {
     newValue = terms[value];
@@ -49,10 +58,20 @@ const units = function(value) {
   };
   if (units[value]) {
     newValue = units[value];
+  }
+  if (value === "degree") {
+    newValue = "";
   } else {
     newValue = value;
   }
   return newValue;
 };
 
-export { timeFilter, meteoTerms, units };
+const wind = function(value) {
+  if (!value) return value;
+  var newValue = value;
+  //newValue = "east";
+  return newValue;
+};
+
+export { timeFilter, meteoTerms, units, wind };
