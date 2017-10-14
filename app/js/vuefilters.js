@@ -58,19 +58,68 @@ const units = function(value) {
   };
   if (units[value]) {
     newValue = units[value];
+  } else {
+    newValue = value;
   }
   if (value === "degree") {
     newValue = "";
-  } else {
-    newValue = value;
   }
   return newValue;
 };
 
 const wind = function(value) {
   if (!value) return value;
-  var newValue = value;
-  //newValue = "east";
+  var newValue = "North";
+
+  if (value > 11) {
+    newValue = "NNE";
+  }
+  if (value > 33) {
+    newValue = "NE";
+  }
+  if (value > 56) {
+    newValue = "ENE";
+  }
+  if (value > 78) {
+    newValue = "E";
+  }
+  if (value > 101) {
+    newValue = "ESE";
+  }
+  if (value > 123) {
+    newValue = "SE";
+  }
+  if (value > 146) {
+    newValue = "SSE";
+  }
+  if (value > 168) {
+    newValue = "S";
+  }
+  if (value > 191) {
+    newValue = "SSW";
+  }
+  if (value > 213) {
+    newValue = "SW";
+  }
+  if (value > 236) {
+    newValue = "WSW";
+  }
+  if (value > 258) {
+    newValue = "W";
+  }
+  if (value > 281) {
+    newValue = "WNW";
+  }
+  if (value > 303) {
+    newValue = "NW";
+  }
+  if (value > 326) {
+    newValue = "NNW";
+  }
+  if (value > 348) {
+    newValue = "N";
+  }
+  newValue = newValue + " (" + value + ")";
   return newValue;
 };
 
