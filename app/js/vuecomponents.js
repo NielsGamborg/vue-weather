@@ -10,6 +10,7 @@ const Forecast = {
   props: ["forecastData"],
   data: function() {
     return {
+      showPrecipitation: false,
       showSnow: false,
       showThunder: false,
       showClouds: false,
@@ -18,8 +19,9 @@ const Forecast = {
   },
   template: `
         <div v-if="forecastData">
-          <p>Forecast created: {{ forecastData.approvedTime | toLocaleTime }}</p>
+          <p>Forecast updated: {{ forecastData.approvedTime | toLocaleTime }}</p>
           <p>
+          Precipitation details<input type="checkbox" v-model="showPrecipitation"> 
           Snow<input type="checkbox" v-model="showSnow"> 
           Thunder<input type="checkbox" v-model="showThunder">
           Cloud details<input type="checkbox" v-model="showClouds">
@@ -58,6 +60,8 @@ const Forecast = {
         showParam = this.showSnow;
       } else if (name === "lcc_mean" || name === "mcc_mean" || name === "hcc_mean") {
         showParam = this.showClouds;
+      } else if (name === "pcat" || name === "pmax" || name === "pmin" || name === "pmedian") {
+        showParam = this.showPrecipitation;
       } else if (name === "vis") {
         showParam = this.showVisibility;
       } else {
