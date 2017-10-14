@@ -5,13 +5,14 @@ import VueAxios from "vue-axios";
 
 Vue.use(VueAxios, axios);
 
-import { timeFilter, meteoTerms, units, wind } from "./vuefilters.js";
+import { timeFilter, meteoTerms, units, wind, precipitationDescription } from "./vuefilters.js";
 import { Title, Forecast } from "./vuecomponents.js";
 
 Vue.filter("toLocaleTime", timeFilter);
 Vue.filter("translateMeteoTerm", meteoTerms);
 Vue.filter("translateUnit", units);
 Vue.filter("translateWind", wind);
+Vue.filter("precipitationDescription", precipitationDescription);
 Vue.component("header-box", Title);
 Vue.component("forecast-box", Forecast);
 
@@ -19,7 +20,7 @@ const VueApp = new Vue({
   el: "#app",
   data: {
     forecastData: null,
-    title: "Showing geekish weater data and predictions for my garden"
+    title: "Showing geekish weather data and predictions for my garden"
   },
   template: `
         <div class="wrapper"> 

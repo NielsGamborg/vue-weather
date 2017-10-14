@@ -10,7 +10,7 @@ const Forecast = {
   props: ["forecastData"],
   data: function() {
     return {
-      forecastLength: 3,
+      forecastLength: 8,
       showPrecipitation: false,
       showSnow: false,
       showThunder: false,
@@ -25,11 +25,12 @@ const Forecast = {
           <div id="selectLength">
           Length of forecast: 
           <select v-model="forecastLength">
-            <option value="1">1 hours</option>
-            <option value="3">3 hours</option>
-            <option value="6">6 hours</option>
+            <option value="4">4 hours</option>
+            <option value="8">8 hours</option>
             <option value="12">12 hours</option>
             <option value="24">24 hours</option>
+            <option value="48">48 hours</option>
+            <option value="100">All</option>
           </select>
         </div>
 
@@ -46,10 +47,11 @@ const Forecast = {
             <h3>{{hour.validTime | toLocaleTime }}</h3>
             <table>
               <tbody>
-                <tr v-for="item in hour.parameters">
-                  <td v-if="chosenParameter(item.name)">{{item.name | translateMeteoTerm }}</td>
-                  <td v-if="chosenParameter(item.name) && item.name !== 'wd'">{{item.values[0] }} {{item.unit | translateUnit }}</td>
-                  <td v-if="chosenParameter(item.name) && item.name === 'wd'">{{item.values[0] | translateWind }} {{item.unit | translateUnit }}</td>
+                <tr v-for="item in hour.parameters" :title="item.name | translateMeteoTerm">
+                  <td v-if="chosenParameter(item.name)" >{{item.name | translateMeteoTerm }}</td>
+                  <td v-if="chosenParameter(item.name) && item.name !== 'wd' && item.name !== 'pcat'">{{item.values[0] }}<span class="unit">{{item.unit | translateUnit }}</span></td>
+                  <td v-if="chosenParameter(item.name) && item.name === 'wd'">{{item.values[0] | translateWind }}</td>
+                  <td class="des" v-if="chosenParameter(item.name) && item.name === 'pcat'">{{item.values[0] | precipitationDescription }}</td>
                 </tr>
               </tbody>
             </table>
@@ -74,10 +76,12 @@ const Forecast = {
         showParam = this.showSnow;
       } else if (name === "lcc_mean" || name === "mcc_mean" || name === "hcc_mean") {
         showParam = this.showClouds;
-      } else if (name === "pcat" || name === "pmax" || name === "pmin" || name === "pmedian") {
+      } else if (name === "pmax" || name === "pmin" || name === "pmedian") {
         showParam = this.showPrecipitation;
       } else if (name === "vis") {
         showParam = this.showVisibility;
+      } else if (name === "Wsymb2") {
+        showParam = false;
       } else {
         showParam = true;
       }

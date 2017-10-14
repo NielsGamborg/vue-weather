@@ -31,13 +31,13 @@ const meteoTerms = function(value) {
     gust: "Wind gust",
     tcc_mean: "Total cloud cover",
     lcc_mean: "Low level cloud cover",
-    mcc_mean: "Medium level cloud cover",
+    mcc_mean: "Mid level cloud cover",
     hcc_mean: "High level cloud cover",
-    pmin: "Minimum precipitation intensity",
-    pmax: "Maximum precipitation intensity",
+    pmin: "Min. precipitation intensity",
+    pmax: "Max. precipitation intensity",
     pmedian: "Median precipitation intensity",
     pmean: "Mean precipitation intensity",
-    spp: "Percent of precipitation in frozen form",
+    spp: "Precipitation in frozen form",
     pcat: "Precipitation category",
     tstm: "Thunder probability"
   };
@@ -59,10 +59,29 @@ const units = function(value) {
   if (units[value]) {
     newValue = units[value];
   } else {
-    newValue = value;
+    newValue = " " + value;
   }
   if (value === "degree") {
     newValue = "";
+  }
+  return newValue;
+};
+
+const precipitationDescription = function(value) {
+  var newValue;
+  var descriptions = [
+    "Dry",
+    "Snow",
+    "Snow and rain",
+    "Rain",
+    "Drizzle",
+    "Freezing rain",
+    "Freezing drizzle"
+  ];
+  if (descriptions[value]) {
+    newValue = descriptions[value];
+  } else {
+    newValue = "Dry";
   }
   return newValue;
 };
@@ -123,4 +142,4 @@ const wind = function(value) {
   return newValue;
 };
 
-export { sortData, timeFilter, meteoTerms, units, wind };
+export { sortData, timeFilter, meteoTerms, units, wind, precipitationDescription };
