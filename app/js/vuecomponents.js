@@ -27,9 +27,7 @@ const Forecast = {
           <div id="selectLength">
           Length of forecast: 
           <select v-model="forecastLength">
-            <option value="4">4 hours</option>
             <option value="8">8 hours</option>
-            <option value="12">12 hours</option>
             <option value="24">24 hours</option>
             <option value="48">48 hours</option>
             <option value="100">All</option>
@@ -37,10 +35,10 @@ const Forecast = {
         </div>
 
           <p>
+          Cloud details<input type="checkbox" v-model="showClouds">
           Precipitation details<input type="checkbox" v-model="showPrecipitation"> 
           Snow<input type="checkbox" v-model="showSnow"> 
           Thunder<input type="checkbox" v-model="showThunder">
-          Cloud details<input type="checkbox" v-model="showClouds">
           Visibility<input type="checkbox" v-model="showVisibility">
 
           

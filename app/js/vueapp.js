@@ -50,10 +50,58 @@ const VueApp = new Vue({
     },
     rebuildforecastData: function(rawData) {
       //var new_forecastData = this._.random(20);
-      var new_forecastData;
-      new_forecastData = rawData;
+      //var new_forecastData = rawData;
+      var new_forecastData = [];
+      /*
+      for (var i = 0; i < rawData.timeSeries.length; i++) {
+        for (var j = 0; j < rawData.timeSeries[i].parameters.length; j++) {
+          console.log(i, j, rawData.timeSeries[i].parameters[j].name);
+        }
+      }*/
+      /*
+      rawData.timeSeries.forEach(function(item, index) {
+        item.parameters.forEach(function(item2, index2) {
+          //console.log("item2", item2);
+          /*item2.forEach(function(item3, index3) {
+            var myVar1 = item.parameters;
+            var myVar2 = _.sortBy(item);
+            console.log("myVar1", myVar1);
+            console.log("myVar2", myVar2);
+            console.log(index, index2, index3, item2.name);
+          }); */
+      /*   var myVar1 = item.parameters;
+          var myVar2 = _.sortBy(item2[name]);
+          console.log(index);
+          console.log("myVar1", myVar1);
+          console.log("myVar2", myVar2);
+          console.log(index, index2, item2.name);
+        });
+      });
+      */
+
+      rawData.timeSeries.forEach(function(item, index) {
+        var myVar1 = item.parameters;
+        var myVar2 = _.sortBy(item.parameters);
+        console.log(index);
+        console.log("myVar1", myVar1);
+        console.log("myVar2", myVar2);
+        console.log(index);
+        new_forecastData.push(myVar2);
+      });
+      /*
+      rawData.timeSeries.forEach(function(item, index) {
+        var myVar1 = item.parameters;
+        var myVar2 = _.sortBy(item.parameters);
+        console.log(index);
+        console.log("myVar1", myVar1);
+        console.log("myVar2", myVar2);
+        console.log(index);
+        new_forecastData.push(myVar2);
+      });
+      */
+      //return new_forecastData;
+
       console.log("new_forecastData", new_forecastData);
-      return new_forecastData;
     }
   },
   created: function() {
