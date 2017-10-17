@@ -23,7 +23,7 @@ const Forecast = {
   template: `
         <div id="databox" v-if="forecastData_raw">
           <!--<p>Forecast updated: {{ forecastData_raw.approvedTime | toLocaleTime }}</p>-->
-          <p>Forecast updated: {{ forecastData.approvedTime }}</p>
+          <p>Forecast updated: {{ forecastData.approvedTime | toLocaleTime }}</p>
 
           <div id="selectLength">
           Length of forecast: 

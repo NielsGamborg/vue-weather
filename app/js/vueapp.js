@@ -50,20 +50,16 @@ const VueApp = new Vue({
       );
     },
     rebuildforecastData: function(rawData) {
-      var final_forecastData = {};
       var new_forecastData = [];
-      var tempObj = { approvedTime: "timestring here" };
+      var tempObj = {};
       rawData.timeSeries.forEach(function(item, index) {
         var sortedParams = _.sortBy(item.parameters, "name"); //Sort after parameter name in data
         var validTime = item.validTime; // Adding the time for the forecast
         tempObj = { validTime: validTime, parameters: sortedParams }; //Building time series objects
-        //console.log("sortedParams", index, sortedParams);
         new_forecastData.push(tempObj);
+        //console.log("sortedParams", index, sortedParams);
       });
-      final_forecastData = { approvedTime: "timestring here", timeSeries: new_forecastData };
-      this.forecastData = { approvedTime: "timestring here", timeSeries: new_forecastData };
-      console.log("new_forecastData", new_forecastData);
-      console.log("final_forecastData", final_forecastData);
+      this.forecastData = { approvedTime: rawData.approvedTime, timeSeries: new_forecastData };
       console.log("this.forecastData", this.forecastData);
     }
   },
