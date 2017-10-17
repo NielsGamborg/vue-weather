@@ -53,7 +53,6 @@ const VueApp = new Vue({
       var new_forecastData = [];
       var tempObj = {};
       rawData.timeSeries.forEach(function(item, index) {
-        //var sortedParams = _.sortBy(item.parameters, "name", false); //Sort after parameter name in data
         var sortedParams = _.orderBy(item.parameters, "unit", "asc"); //Sort after parameter name in data
         var validTime = item.validTime; // Adding the time for the forecast
         tempObj = { validTime: validTime, parameters: sortedParams }; //Building time series objects
