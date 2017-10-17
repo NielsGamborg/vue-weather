@@ -23,13 +23,13 @@ Vue.component("forecast-box", Forecast);
 const VueApp = new Vue({
   el: "#app",
   data: {
-    forecastData: null,
+    forecastData_raw: null,
     title: "Showing geekish weather data and predictions for my garden"
   },
   template: `
         <div class="wrapper"> 
             <header-box :title='title'></header-box>
-            <forecast-box :forecast-data="forecastData"></forecast-box>
+            <forecast-box :forecast-data_raw="forecastData_raw"></forecast-box>
         </div>
     `,
   methods: {
@@ -39,9 +39,9 @@ const VueApp = new Vue({
       this.$http.get(this.url).then(
         response => {
           console.log("response", response.data);
-          this.forecastData = response.data;
-          var rawForecast = response.data;
-          this.rebuildforecastData(rawForecast);
+          this.forecastData_raw = response.data;
+          var rawForec = response.data;
+          this.rebuildforecastData(rawForec);
         },
         response => {
           console.log("Error!", response);
@@ -49,16 +49,19 @@ const VueApp = new Vue({
       );
     },
     rebuildforecastData: function(rawData) {
+      var final_forecastData = {};
       var new_forecastData = [];
+      var tempObj = { approvedTime: "timestring here" };
       rawData.timeSeries.forEach(function(item, index) {
         var sortedParams = _.sortBy(item.parameters, "name"); //Sort after parameter name in data
         var validTime = item.validTime; // Adding the time for the forecast
-        sortedParams.unshift({ validTime: validTime });
+        tempObj = { validTime: validTime, parameters: sortedParams }; //Building time series objects
         console.log("sortedParams", index, sortedParams);
-        new_forecastData.push(sortedParams);
+        new_forecastData.push(tempObj);
       });
-
+      final_forecastData = { approvedTime: "timestring here", timeseries: new_forecastData };
       console.log("new_forecastData", new_forecastData);
+      console.log("final_forecastData", final_forecastData);
     }
   },
   created: function() {

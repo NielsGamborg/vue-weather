@@ -9,7 +9,7 @@ const Title = {
 };
 
 const Forecast = {
-  props: ["forecastData"],
+  props: ["forecastData_raw"],
   data: function() {
     return {
       forecastLength: 8,
@@ -21,8 +21,8 @@ const Forecast = {
     };
   },
   template: `
-        <div id="databox" v-if="forecastData">
-          <p>Forecast updated: {{ forecastData.approvedTime | toLocaleTime }}</p>
+        <div id="databox" v-if="forecastData_raw">
+          <p>Forecast updated: {{ forecastData_raw.approvedTime | toLocaleTime }}</p>
 
           <div id="selectLength">
           Length of forecast: 
@@ -43,7 +43,7 @@ const Forecast = {
 
           
           </p>
-          <div v-for="(hour, index) in forecastData.timeSeries" v-if="index < forecastLength" class="tableBox">  
+          <div v-for="(hour, index) in forecastData_raw.timeSeries" v-if="index < forecastLength" class="tableBox">  
             <h3>{{hour.validTime | toLocaleTime }}</h3>
             <table>
               <tbody>
