@@ -24,12 +24,13 @@ const VueApp = new Vue({
   el: "#app",
   data: {
     forecastData_raw: null,
+    forecastData: null,
     title: "Showing geekish weather data and predictions for my garden"
   },
   template: `
         <div class="wrapper"> 
             <header-box :title='title'></header-box>
-            <forecast-box :forecast-data_raw="forecastData_raw"></forecast-box>
+            <forecast-box :forecast-data_raw="forecastData_raw" :forecast-data="forecastData"></forecast-box>
         </div>
     `,
   methods: {
@@ -56,12 +57,14 @@ const VueApp = new Vue({
         var sortedParams = _.sortBy(item.parameters, "name"); //Sort after parameter name in data
         var validTime = item.validTime; // Adding the time for the forecast
         tempObj = { validTime: validTime, parameters: sortedParams }; //Building time series objects
-        console.log("sortedParams", index, sortedParams);
+        //console.log("sortedParams", index, sortedParams);
         new_forecastData.push(tempObj);
       });
-      final_forecastData = { approvedTime: "timestring here", timeseries: new_forecastData };
+      final_forecastData = { approvedTime: "timestring here", timeSeries: new_forecastData };
+      this.forecastData = { approvedTime: "timestring here", timeSeries: new_forecastData };
       console.log("new_forecastData", new_forecastData);
       console.log("final_forecastData", final_forecastData);
+      console.log("this.forecastData", this.forecastData);
     }
   },
   created: function() {
